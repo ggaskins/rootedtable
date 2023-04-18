@@ -31,7 +31,8 @@ session_start();
             </label>
         </div>
         <button name="Submit" value="Login" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-
+        <!-- Add a "Create Account" button below the "Sign in" button -->
+        <a href="signup.php" class="btn btn-lg btn-secondary btn-block">Create Account</a>
         <?php
 
         /* Check if login form has been submitted */
