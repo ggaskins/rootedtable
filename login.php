@@ -312,7 +312,7 @@
 			padding: 13px 20px;
 			padding-left: 55px;
 			height: 48px;
-			width: 100%;
+			width: 50;
 			font-weight: 500;
 			border-radius: 4px;
 			font-size: 14px;
