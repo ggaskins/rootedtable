@@ -429,6 +429,15 @@
 			color: #ffeba7;
 			box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 		}
+		.container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+		}
+		.row.full-height {
+			flex-grow: 1;
+		}
 	</style>
 </head>
 <body>
