@@ -311,8 +311,8 @@
 		.form-style {
 			padding: 13px 20px;
 			padding-left: 55px;
-			height: 48px;
-			width: 50;
+			height: 35px;
+			width: 75;
 			font-weight: 500;
 			border-radius: 4px;
 			font-size: 14px;
