@@ -453,10 +453,6 @@
 			<div class="cloud"></div>
 		</div>
 	</div>
-	<a href="https://front.codes/" class="logo" target="_blank">
-		<img src="https://assets.codepen.io/1462889/fcy.png" alt="">
-	</a>
-
 	<div class="section">
 		<div class="container">
 			<div class="row full-height justify-content-center">
