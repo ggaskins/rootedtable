@@ -470,7 +470,7 @@
 						<h6 class="mb-0 pb-3"></h6>
 						<input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
 						<label for="reg-log"></label>
-						<div class="card-3d-wrap mx-auto">
+						<div class="card-3d-wrap center-vertically">
 							<div class="card-3d-wrapper">
 								<div class="card-front">
 									<div class="center-wrap">
