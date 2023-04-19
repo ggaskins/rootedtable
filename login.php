@@ -5,137 +5,189 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Form</title>
   <style>
-    body, html {
+    body {
+      background: #00b4ff;
+      color: #333;
+      font: 100% Arial, Sans Serif;
+      height: 100vh;
       margin: 0;
       padding: 0;
-      height: 100%;
-      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
     }
 
-    .login-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-
-    .login-form {
-      width: 30%;
-      min-width: 320px;
-      max-width: 400px;
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 5px;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-
-    .submit-button {
-      width: 100%;
-      padding: 10px;
-      background-color: #008CBA;
-      border: none;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .submit-button:hover {
-      background-color: #0077A7;
-    }
-    
-    .scene {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
+    #background-wrap {
+        bottom: 0;
+      left: 0;
+      padding-top: 50px;
+      position: fixed;
+      right: 0;
+      top: 0;
       z-index: -1;
     }
 
-    .farmer,
+    /* KEYFRAMES */
+
+    @-webkit-keyframes animateCloud {
+        0% {
+            margin-left: -1000px;
+        }
+        100% {
+            margin-left: 100%;
+        }
+    }
+
+    @-moz-keyframes animateCloud {
+        0% {
+            margin-left: -1000px;
+        }
+        100% {
+            margin-left: 100%;
+        }
+    }
+
+    @keyframes animateCloud {
+        0% {
+            margin-left: -1000px;
+        }
+        100% {
+            margin-left: 100%;
+        }
+    }
+
+    /* ANIMATIONS */
+
+    .x1 {
+      -webkit-animation: animateCloud 35s linear infinite;
+      -moz-animation: animateCloud 35s linear infinite;
+      animation: animateCloud 35s linear infinite;
+
+      -webkit-transform: scale(0.65);
+      -moz-transform: scale(0.65);
+      transform: scale(0.65);
+    }
+
+    .x2 {
+      -webkit-animation: animateCloud 20s linear infinite;
+      -moz-animation: animateCloud 20s linear infinite;
+      animation: animateCloud 20s linear infinite;
+
+      -webkit-transform: scale(0.3);
+      -moz-transform: scale(0.3);
+      transform: scale(0.3);
+    }
+
+    .x3 {
+      -webkit-animation: animateCloud 30s linear infinite;
+      -moz-animation: animateCloud 30s linear infinite;
+      animation: animateCloud 30s linear infinite;
+
+      -webkit-transform: scale(0.5);
+      -moz-transform: scale(0.5);
+      transform: scale(0.5);
+    }
+
+    .x4 {
+      -webkit-animation: animateCloud 18s linear infinite;
+      -moz-animation: animateCloud 18s linear infinite;
+      animation: animateCloud 18s linear infinite;
+
+      -webkit-transform: scale(0.4);
+      -moz-transform: scale(0.4);
+      transform: scale(0.4);
+    }
+
+    .x5 {
+      -webkit-animation: animateCloud 25s linear infinite;
+      -moz-animation: animateCloud 25s linear infinite;
+      animation: animateCloud 25s linear infinite;
+
+      -webkit-transform: scale(0.55);
+      -moz-transform: scale(0.55);
+      transform: scale(0.55);
+    }
+
+    /* OBJECTS */
+
     .cloud {
+      background: #fff;
+      background: -moz-linear-gradient(top,  #fff 5%, #f1f1f1 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#fff), color-stop(100%,#f1f1f1));
+      background: -webkit-linear-gradient(top,  #fff 5%,#f1f1f1 100%);
+      background: -o-linear-gradient(top,  #fff 5%,#f1f1f1 100%);
+      background: -ms-linear-gradient(top,  #fff 5%,#f1f1f1 100%);
+      background: linear-gradient(top,  #fff 5%,#f1f1f1 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#f1f1f1',GradientType=0 );
+
+      -webkit-border-radius: 100px;
+      -moz-border-radius: 100px;
+      border-radius: 100px;
+
+      -webkit-box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
+
+      height: 120px;
+      position: relative;
+      width: 350px;
+    }
+
+    .cloud:after, .cloud:before {
+        background: #fff;
+      content: '';
       position: absolute;
-      bottom: 10%;
+      z-indeX: -1;
     }
 
-    .farmer {
-      left: 10%;
-      width: 30px;
-      height: 60px;
-      background-color: #000;
-      animation: farmerAnimation 2s infinite alternate;
+    .cloud:after {
+      -webkit-border-radius: 100px;
+      -moz-border-radius: 100px;
+      border-radius: 100px;
+
+      height: 100px;
+      left: 50px;
+      top: -50px;
+      width: 100px;
     }
 
-    .farmer::before {
-      content: "";
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      margin-left: -10px;
-      width: 20px;
-      height: 20px;
-      background-color: #000;
-      border-radius: 50%;
-    }
+    .cloud:before {
+      -webkit-border-radius: 200px;
+      -moz-border-radius: 200px;
+      border-radius: 200px;
 
-    .cloud {
-      left: 0;
-      width: 60px;
-      height: 30px;
-      background-color: #fff;
-      border-radius: 50%;
-      opacity: 0.8;
-      animation: cloudAnimation 10s linear infinite;
-    }
-
-    .cloud::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 20px;
-      width: 40px;
-      height: 40px;
-      background-color: #fff;
-      border-radius: 50%;
-    }
-
-    @keyframes farmerAnimation {
-      0% {
-        transform: translateY(0);
-      }
-      100% {
-        transform: translateY(-10px);
-      }
-    }
-
-    @keyframes cloudAnimation {
-      0% {
-        transform: translateX(-100%);
-      }
-      100% {
-        transform: translateX(100%);
-      }
+      width: 180px;
+      height: 180px;
+      right: 50px;
+      top: -90px;
     }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <div class="scene">
-      <div class="farmer"></div>
-      <div class="cloud"></div>
+  <div id="background-wrap">
+    <div class="x1">
+        <div class="cloud"></div>
     </div>
-    <form class="login-form" action="authenticate.php" method="post">
+
+    <div class="x2">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x3">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x4">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x5">
+        <div class="cloud"></div>
+    </div>
+  </div>
+    <form action="authenticate.php" method="post">
       <h2>Login</h2>
-      <input type="email" name="email" class="form-control" placeholder="Email" required>
-      <input type="password" name="password" class="form-control" placeholder="Password" required>
-      <input type="submit" value="Login" class="submit-button">
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <input type="submit" value="Login">
     </form>
   </div>
 </body>
