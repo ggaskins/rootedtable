@@ -15,7 +15,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         // The email and password are correct, start a session and redirect to a logged-in area
         session_start();
         $_SESSION['user_id'] = $user['id'];
-        header('Location: dashboard.php');
+        header('Location: index.php');
         exit;
     } else {
         // The email or password is incorrect, redirect back to the login page with an error message
