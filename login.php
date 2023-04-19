@@ -198,7 +198,7 @@
 		.section{
 			position: relative;
 			width: 100%;
-			display: block;
+			text-align: center;
 		}
 		.full-height{
 			min-height: 100vh;
