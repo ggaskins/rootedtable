@@ -478,14 +478,14 @@
 											<div class="section text-center">
 												<h4 class="mb-4 pb-3">Log In</h4>
 												<div class="form-group">
-													<input type="email" name="email" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off">
+													<input type="text" name="user_email" id="user_email" class="form-control" />
 													<i class="input-icon uil uil-at"></i>
 												</div>  
 												<div class="form-group mt-2">
-													<input type="password" name="password" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off">
+													<input type="password" name="user_password" id="user_password" class="form-control" />
 													<i class="input-icon uil uil-lock-alt"></i>
 												</div>
-												<input type="submit" class="btn mt-4" value="submit"><p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p>
+												<input type="submit" name="login" id="login" class="btn btn-info" value="Login" /><p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p>
 											</div>
 										</form>
 									</div>
