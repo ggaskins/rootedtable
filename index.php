@@ -1,75 +1,145 @@
 <?php
+//index.php
 
-  session_start(); /* Starts the session */
+include("database_connection.php");
 
-  if($_SESSION['Active'] == false){ /* Redirects user to Login.php if not logged in */
-    header("location:login.php");
-	  exit;
-  }
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+  header("location:login.php");
+  exit;
+}
+
+$user_id = $_SESSION['user_id'];
+$user_type = $_SESSION['user_type'];
+
+if(!isset($_COOKIE["type"]))
+{
+ header("location:login.php");
+}
+
 ?>
-
-<!-- Show password protected content down here -->
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+ <head>
+  <title>Lab4: Authentication Using Cookies</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Add some custom styles here */
+    nav {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+    }
 
-    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <title>Logged in</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="#">Home</a></li>
-            <li role="presentation"><a href="#">About</a></li>
-            <li role="presentation"><a href="#">Contact</a></li>
-          </ul>
-        </nav>
-        <h3 class="text-muted">PHP Login by @mariofont</h3>
-      </div>
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 20px;
+    }
 
-      <div class="jumbotron">
-        <h1>Status: logged in</h1>
-        <p class="lead">And just like that you've created your first password protected area with PHP and a little knowledge of HTML. Change the username and password in login.php for your own and give it a try!</p>
-        <p><a class="btn btn-lg btn-success" href="logout.php" role="button">Log out</a></p>
-      </div>
+    footer {
+      background-color: #ddd;
+      color: #333;
+      padding: 10px;
+      text-align: center;
+    }
 
-      <div class="row marketing">
-        <div class="col-lg-6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+    .user-info {
+      display: flex;
+      align-items: center;
+    }
 
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+    .user-info img {
+      border-radius: 50%;
+      margin-right: 10px;
+    }
 
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
+    .dropdown-menu {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      position: absolute;
+      right: 20px;
+      top: 60px;
+      z-index: 100;
+      display: none;
+    }
 
-        <div class="col-lg-6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+    .dropdown-toggle {
+      cursor: pointer;
+    }
 
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+    .dropdown-toggle:hover + .dropdown-menu {
+      display: block;
+    }
 
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-      </div>
+    .social-media {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
 
-      <footer class="footer">
-        <p>&copy; Mario Font 2016</p>
-      </footer>
+    .social-media a {
+      display: inline-block;
+      margin: 0 10px;
+      font-size: 24px;
+      color: #333;
+    }
 
+    .social-media a:hover {
+      color: #666;
+    }
+  </style>
+ </head>
+ <body>
+  <nav>
+    <div class="logo">
+      <a href="#">My Website</a>
     </div>
+    <div class="menu">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <div class="user-info">
+        <img src="https://via.placeholder.com/50x50" alt="User Avatar">
+        <div class="dropdown">
+          <a class="dropdown-toggle" href="#">Welcome, <?php echo $_COOKIE["type"] ?></a>
+          <div class="dropdown-menu">
+            <a href="#">My Profile</a>
+            <a href="#">Settings</a>
+            <a href="logout.php">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+   <h2 align="center">How to create PHP Login Script using Cookies</h2>
+   <br />
+   <?php
+     if ($user_type === "admin") {
+       echo '<h3 align="center">Welcome Admin</h3>';
+     }
+?>
 
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
+   <div class="content">
+     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam hendrerit posuere elit, vel scelerisque nibh eleifend non. In nec metus velit. Fusce maximus dolor vel elit tincidunt, eu bibendum nisi tempor. Nulla luctus, magna vel dictum maximus, nulla lacus viverra felis, sit amet convallis nisl metus id felis. Donec malesuada lectus nisi, id molestie velit iaculis eget. Sed a sapien tellus. Integer varius, enim eu accumsan varius, eros dui volutpat mauris, at tincidunt velit velit in libero. Etiam malesuada sit amet felis vel consectetur. Donec quis nunc sapien.</p>
+     <p>Nunc luctus euismod mi, vel facilisis purus. Nullam sollicitudin urna eu nisl volutpat, nec suscipit nunc efficitur. In hac habitasse platea dictumst. Aliquam a ex enim. In hac habitasse platea dictumst. Proin pellentesque ante vel quam tristique pretium. Fusce dignissim hendrerit nunc vel consectetur. Sed commodo odio sit amet justo vestibulum convallis.</p>
+     <p>Quisque placerat nibh quis velit venenatis, ut pharetra justo commodo. Duis ut libero mauris. Donec scelerisque luctus aliquam. Integer non elit sagittis, maximus elit at, blandit mi. Maecenas eget sapien urna. Integer commodo justo et diam varius, sed commodo lorem vestibulum. Fusce viverra, ex at faucibus placerat, sem augue dictum libero, quis consequat felis augue et ipsum. Nullam fringilla diam ac mauris porttitor laoreet. Fusce euismod quis ante sit amet bibendum. Morbi consectetur placerat commodo. Vivamus commodo, ipsum eu vestibulum consectetur, arcu quam pellentesque arcu, vel blandit odio justo vitae nulla. Aenean dictum dui in elit rhoncus, vitae malesuada nulla bibendum. Praesent eget mi euismod, suscipit arcu ut, hendrerit neque.</p>
+   </div>
+  </div>
+  <footer>
+    &copy; 2023 My Website. All rights reserved.
+    <div class="social-media">
+      <a href="#"><i class="fab fa-facebook-square"></i></a>
+      <a href="#"><i class="fab fa-twitter-square"></i></a>
+      <a href="#"><i class="fab fa-instagram-square"></i></a>
+    </div>
+  </footer>
+ </body>
 </html>

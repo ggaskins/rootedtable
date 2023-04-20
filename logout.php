@@ -1,6 +1,7 @@
 <?php
-  session_start(); /* Starts the session */
-  session_destroy(); /* Destroy started session */
+//logout.php
+setcookie("type", "", time()-3600);
 
-  header("location:login.php");  /* Redirect to login page */
-  exit;
+header("location:login.php");
+
+?>
