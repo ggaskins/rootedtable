@@ -4,22 +4,7 @@
 
   $countries = [
     "CA"=>"Canada","FR"=>"France","IT"=>"Italy","DE"=>"Germany","GH"=>"Ghana","GR"=>"Greece","ES"=>"Spain","US"=>"United States","GB"=>"United Kingdom"
-  ];
-
-  $regions = [
-  "Northern Virginia",
-  "Eastern Virginia",
-  "Central Virginia",
-  "Southwest Virginia",
-  "Shenandoah Valley"
-  ];
-
-  $counties = [
-        "Arlington County", "Chesterfield County", "City of Alexandria", "City of Charlottesville", "City of Chesapeake",
-        "City of Richmond", "City of Virginia Beach", "Fairfax County", "Fauquier County", "Frederick County",
-        "Hanover County", "Henrico County", "James City County", "Loudoun County", "Montgomery County",
-        "Prince William County", "Roanoke County", "Rockbridge County", "Rockingham County", "Stafford County"
-    ];
+  ];  
 
   $posts = [
     ["postId"=>1, "userId"=>2, "userName"=>"Leonie Kohler", "date"=>"2/8/2017","thumb"=>"8710320515.jpg","title"=>"Ekklisia Agii Isidori Church","reviewsNum"=>15,"reviewsRating"=>3,"excerpt"=>"At the end of the hot climb up to the top Lycabettus Hill you are greeted with the oasis that is the Ekklisia Agii Isidori church."],
