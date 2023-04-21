@@ -1,145 +1,118 @@
-<?php
-//index.php
-
-include("database_connection.php");
-
-session_start();
-
-if (!isset($_SESSION['user_id'])) {
-  header("location:login.php");
-  exit;
-}
-
-$user_id = $_SESSION['user_id'];
-$user_type = $_SESSION['user_type'];
-
-if(!isset($_COOKIE["type"]))
-{
- header("location:login.php");
-}
-
-?>
 <!DOCTYPE html>
-<html>
- <head>
-  <title>Lab4: Authentication Using Cookies</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
-    /* Add some custom styles here */
-    nav {
-      background-color: #333;
-      color: #fff;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-    }
+<html lang="en">
+<?php include("functions.inc.php"); ?>
+<head>
+    <meta charset="utf-8">
+    <title>Rooted Table</title>
+    <style>
+        .btn {
+            border-radius: 20px; /* set the border-radius to make buttons round */
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 20px;
-    }
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-theme.css" />
 
-    footer {
-      background-color: #ddd;
-      color: #333;
-      padding: 10px;
-      text-align: center;
-    }
+</head>
 
-    .user-info {
-      display: flex;
-      align-items: center;
-    }
+<body>
+    <?php include('header.inc.php'); ?>
 
-    .user-info img {
-      border-radius: 50%;
-      margin-right: 10px;
-    }
+    <!-- Page Content -->
+    <main class="container">
+        <div class="row">
+            <aside class="col-md-2">
+                <?php include("leftnav.include.php"); ?>
+                <!-- end continents panel -->
+            </aside>
+            <div class="col-md-10">
 
-    .dropdown-menu {
-      background-color: #fff;
-      border: 1px solid #ccc;
-      padding: 10px;
-      position: absolute;
-      right: 20px;
-      top: 60px;
-      z-index: 100;
-      display: none;
-    }
+               
 
-    .dropdown-toggle {
-      cursor: pointer;
-    }
+                <!-- start post summaries -->
+                <div class="postlist">
+                    <?php
+                    // Assuming $page is the page number and $perPage is the number of businesses to display per page
+                    // Define the page number and number of businesses to display per page
+                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                    $perPage = 10;
 
-    .dropdown-toggle:hover + .dropdown-menu {
-      display: block;
-    }
+                    // Calculate the offset
+                    $offset = ($page - 1) * $perPage;
 
-    .social-media {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
+                    // Prepare a query to fetch the next set of businesses
+                    $query = "SELECT * FROM businesses LIMIT :perPage OFFSET :offset";
+                    $statement = $connect->prepare($query);
+                    $statement->bindParam(':perPage', $perPage, PDO::PARAM_INT);
+                    $statement->bindParam(':offset', $offset, PDO::PARAM_INT);
 
-    .social-media a {
-      display: inline-block;
-      margin: 0 10px;
-      font-size: 24px;
-      color: #333;
-    }
+                    // Execute the query
+                    $statement->execute();
 
-    .social-media a:hover {
-      color: #666;
-    }
-  </style>
- </head>
- <body>
-  <nav>
-    <div class="logo">
-      <a href="#">My Website</a>
-    </div>
-    <div class="menu">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-      <div class="user-info">
-        <img src="https://via.placeholder.com/50x50" alt="User Avatar">
-        <div class="dropdown">
-          <a class="dropdown-toggle" href="#">Welcome, <?php echo $_COOKIE["type"] ?></a>
-          <div class="dropdown-menu">
-            <a href="#">My Profile</a>
-            <a href="#">Settings</a>
-            <a href="logout.php">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-  <div class="container">
-   <h2 align="center">How to create PHP Login Script using Cookies</h2>
-   <br />
-   <?php
-     if ($user_type === "admin") {
-       echo '<h3 align="center">Welcome Admin</h3>';
-     }
-?>
+                    // Fetch all the rows as an associative array
+                    $businesses = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-   <div class="content">
-     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam hendrerit posuere elit, vel scelerisque nibh eleifend non. In nec metus velit. Fusce maximus dolor vel elit tincidunt, eu bibendum nisi tempor. Nulla luctus, magna vel dictum maximus, nulla lacus viverra felis, sit amet convallis nisl metus id felis. Donec malesuada lectus nisi, id molestie velit iaculis eget. Sed a sapien tellus. Integer varius, enim eu accumsan varius, eros dui volutpat mauris, at tincidunt velit velit in libero. Etiam malesuada sit amet felis vel consectetur. Donec quis nunc sapien.</p>
-     <p>Nunc luctus euismod mi, vel facilisis purus. Nullam sollicitudin urna eu nisl volutpat, nec suscipit nunc efficitur. In hac habitasse platea dictumst. Aliquam a ex enim. In hac habitasse platea dictumst. Proin pellentesque ante vel quam tristique pretium. Fusce dignissim hendrerit nunc vel consectetur. Sed commodo odio sit amet justo vestibulum convallis.</p>
-     <p>Quisque placerat nibh quis velit venenatis, ut pharetra justo commodo. Duis ut libero mauris. Donec scelerisque luctus aliquam. Integer non elit sagittis, maximus elit at, blandit mi. Maecenas eget sapien urna. Integer commodo justo et diam varius, sed commodo lorem vestibulum. Fusce viverra, ex at faucibus placerat, sem augue dictum libero, quis consequat felis augue et ipsum. Nullam fringilla diam ac mauris porttitor laoreet. Fusce euismod quis ante sit amet bibendum. Morbi consectetur placerat commodo. Vivamus commodo, ipsum eu vestibulum consectetur, arcu quam pellentesque arcu, vel blandit odio justo vitae nulla. Aenean dictum dui in elit rhoncus, vitae malesuada nulla bibendum. Praesent eget mi euismod, suscipit arcu ut, hendrerit neque.</p>
-   </div>
-  </div>
-  <footer>
-    &copy; 2023 My Website. All rights reserved.
-    <div class="social-media">
-      <a href="#"><i class="fab fa-facebook-square"></i></a>
-      <a href="#"><i class="fab fa-twitter-square"></i></a>
-      <a href="#"><i class="fab fa-instagram-square"></i></a>
-    </div>
-  </footer>
- </body>
+                    ?>
+                    <!-- replace each of these rows with a function call -->
+
+                    <?php
+                    foreach ($businesses as $business) {
+                        outputPostRow($business);
+                    }
+                    ?>
+
+                </div>   <!-- end post list -->
+
+                <!-- add pagination links here -->
+                <ul class="pagination">
+                    <?php
+    // Get the total number of businesses
+                    $totalBusinesses = $connect->query('SELECT COUNT(*) FROM businesses')->fetchColumn();
+
+    // Calculate the total number of pages
+                    $totalPages = ceil($totalBusinesses / $perPage);
+
+    // Calculate the start and end page numbers for the pagination links
+                    $startPage = max($page - 2, 1);
+                    $endPage = min($page + 2, $totalPages);
+
+    // Display "First" link
+                    if ($page > 1) {
+                        echo "<li><a href='index.php?page=1'>First</a></li>";
+                    }
+
+    // Display ellipsis if necessary
+                    if ($startPage > 1) {
+                        echo "<li><span>...</span></li>";
+                    }
+
+    // Generate the pagination links
+                    for ($i = $startPage; $i <= $endPage; $i++) {
+                        if ($i == $page) {
+                            echo "<li class='active'><a href='index.php?page=$i'>$i</a></li>";
+                        } else {
+                            echo "<li><a href='index.php?page=$i'>$i</a></li>";
+                        }
+                    }
+
+    // Display ellipsis if necessary
+                    if ($endPage < $totalPages) {
+                        echo "<li><span>...</span></li>";
+                    }
+
+    // Display "Last" link
+                    if ($page < $totalPages) {
+                        echo "<li><a href='index.php?page=$totalPages'>Last</a></li>";
+                    }
+                    ?>
+                </ul>
+            </div>  <!-- end col-md-10 -->
+        </div>   <!-- end row -->
+    </main>
+    
+</body>
+
 </html>

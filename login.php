@@ -6,7 +6,7 @@ include("database_connection.php");
 
 if(isset($_COOKIE["type"]))
 {
-   header("location:index.php");
+   header("location:index.html");
 }
 
 $message = '';
@@ -38,7 +38,7 @@ if(isset($_POST["login"]))
             if(password_verify($_POST["user_password"], $row["user_password"]))
             {
                setcookie("type", $row["user_type"], time()+3600);
-               header("location:index.php");
+               header("location:index.html");
            }
            else
            {
@@ -188,14 +188,14 @@ if(isset($_POST["login"]))
   height: 120px;
   position: relative;
   width: 350px;
-  z-index: 0; /* Add a z-index to move the clouds to the background */
+  z-index: 1; /* Add a z-index to move the clouds to the background */
 }
 
 .cloud:after, .cloud:before {
   background: #fff;
   content: '';
   position: absolute;
-  z-indeX: -1;
+  z-indeX: 1;
 }
 
 .cloud:after {
@@ -207,6 +207,7 @@ if(isset($_POST["login"]))
   left: 50px;
   top: -50px;
   width: 100px;
+  z-indeX: 1;
 }
 
 .cloud:before {
@@ -218,6 +219,7 @@ if(isset($_POST["login"]))
   height: 180px;
   right: 50px;
   top: -90px;
+  z-indeX: 1;
 }
 .container {
   max-width: 400px; /* set the maximum width to 400 pixels */
@@ -252,7 +254,7 @@ if(isset($_POST["login"]))
     transform: translateX(-50%);
     background-color: #FFEB3B;
     border-radius: 50%;
-    z-index: 2; /* Set the z-index to ensure that the farm is on top of the hill */
+    z-index: -1000; /* Set the z-index to ensure that the farm is on top of the hill */
     box-shadow: 0px 0px 30px 10px rgba(255, 235, 59, 0.5);
     animation: sun 4s linear infinite;
   }

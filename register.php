@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       ':password' => $password,
     ]);
 
-    header('Location: login.php');
+    header('Location: index.html');
     exit();
   }
 }
