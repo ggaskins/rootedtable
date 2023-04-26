@@ -154,8 +154,7 @@ span {
   // Validate credentials
         if(empty($username_err) && empty($password_err)){
     // Attempt to connect to MySQL database
-          $link = mysqli_connect($db_host . ':' . $db_port, $db_user, $db_password, $db_name, 3306, '/path/to/mysql-ssl-ca-cert.pem', array(
-            MYSQLI_CLIENT_SSL_VERIFY_SERVER_CERT => true,
+          $link = mysqli_connect($db_host . ':' . $db_port, $db_user, $db_password, $db_name,
           ));
 
           if($link === false){
