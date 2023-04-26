@@ -6,7 +6,7 @@ $db_user = 'doadmin';
 $db_pass = 'AVNS_TiObYQOBYOU5Klx6sf8 hide';
 
 // Create a database connection
-$link = mysqli_connect($db_host, $db_user, $db_pass, $db_name, 25060, array('sslmode' => 'REQUIRED'));
+$link = mysqli_connect($db_host . ':' . $db_port, $db_user, $db_password, $db_name);
 
 // Check connection
 if (!$link) {
