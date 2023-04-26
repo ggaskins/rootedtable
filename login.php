@@ -5,14 +5,14 @@
   <title>Login Page</title>
   <style>
     /* Position video background */
-#video-background {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -1;
-}
+    #video-background {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+    }
 
 /* Center login page elements */
 .center {
@@ -101,7 +101,7 @@ input[type="submit"] {
 span {
   color: red;
 }
-  </style>
+</style>
 </head>
 <video autoplay muted loop id="video-background">
   <source src="farm-video.mp4" type="video/mp4">
@@ -114,85 +114,88 @@ span {
       </div>
 
       <?php
-  // Define MySQL database connection details
+  // Initialize database connection parameters
       $db_host = 'db-mysql-nyc1-74817-do-user-13891110-0.b.db.ondigitalocean.com';
+      $db_port = '25060';
       $db_name = 'defaultdb';
       $db_user = 'doadmin';
-      $db_pass = 'AVNS_TiObYQOBYOU5Klx6sf8 hide';
+      $db_password = 'AVNS_TiObYQOBYOU5Klx6sf8';
 
-  // Initialize session
+// Initialize session
       session_start();
 
-  // Check if the user is already logged in, if yes then redirect to welcome page
+// Check if the user is already logged in, if yes then redirect to welcome page
       if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
         header("location: welcome.php");
         exit;
       }
 
-  // Define variables and initialize with empty values
+// Define variables and initialize with empty values
       $username = $password = "";
       $username_err = $password_err = "";
 
-  // Processing form data when form is submitted
+// Processing form data when form is submitted
       if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-      // Check if username is empty
+  // Check if username is empty
         if(empty(trim($_POST["username"]))){
           $username_err = "Please enter username.";
         } else{
           $username = trim($_POST["username"]);
         }
 
-      // Check if password is empty
+  // Check if password is empty
         if(empty(trim($_POST["password"]))){
           $password_err = "Please enter your password.";
         } else{
           $password = trim($_POST["password"]);
         }
 
-      // Validate credentials
+  // Validate credentials
         if(empty($username_err) && empty($password_err)){
-          // Attempt to connect to MySQL database
-          $link = mysqli_connect($db_host, $db_user, $db_password, $db_name);
+    // Attempt to connect to MySQL database
+          $link = mysqli_connect($db_host . ':' . $db_port, $db_user, $db_password, $db_name, 3306, '/path/to/mysql-ssl-ca-cert.pem', array(
+            MYSQLI_CLIENT_SSL_VERIFY_SERVER_CERT => true,
+          ));
 
           if($link === false){
             die("ERROR: Could not connect. " . mysqli_connect_error());
           }
 
-          // Prepare a select statement
+    // Prepare a select statement
           $sql = "SELECT user_id, user_email, user_password, user_fname FROM users WHERE user_email = ?";
 
           if($stmt = mysqli_prepare($link, $sql)){
-              // Bind variables to the prepared statement as parameters
+      // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
 
-              // Set parameters
+      // Set parameters
             $param_username = $username;
 
-              // Attempt to execute the prepared statement
+      // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                  // Store result
+        // Store result
               mysqli_stmt_store_result($stmt);
 
-                  // Check if username exists, if yes then verify password
+        // Check if username exists, if yes then verify password
               if(mysqli_stmt_num_rows($stmt) == 1){                    
-                      // Bind result variables
+          // Bind result variables
                 mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $user_fname);
                 if(mysqli_stmt_fetch($stmt)){
                   if(password_verify($password, $hashed_password)){
-                              // Password is correct, start a new session
+              // Password is correct, start a new session
                     session_start();
 
-                              // Store data in session variables
+              // Store data in session variables
                     $_SESSION["loggedin"] = true;
                     $_SESSION["id"] = $id;
                     $_SESSION["username"] = $username;
                     $_SESSION["name"] = $user_fname;                   
 
-                              // Redirect user to welcome page
+              // Redirect user to welcome page
                     header("location: welcome.php");
                   } else{
-                              // Display an error message if password is not valid
+              // Display an error message if password is not valid
                     $password_err = "The password you entered was not valid.";
                   }
                 }
