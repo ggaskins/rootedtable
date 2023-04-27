@@ -14,7 +14,7 @@ $db_password = 'AVNS_TiObYQOBYOU5Klx6sf8';
 $conn = mysqli_connect($db_host . ':' . $db_port, $db_user, $db_password, $db_name);
 
 // Check connection
-if (!$link) {
+if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
