@@ -1,8 +1,5 @@
 <?php
-if(!isset($_SESSION["loggedin"])) 
-    { 
-        session_start(); 
-    } 
+session_start(); 
 // Set page title
 $page_title = "Nearby Farms - Map";
 // Include header
