@@ -40,10 +40,12 @@
         }
     </style>
     <?php
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 // Set page title
     $page_title = "About Us";
-// Start session
-    session_start();
 // Include header
     require_once "header.php";
     ?><?php
