@@ -100,7 +100,7 @@
       <nav>
         <ul>
            <?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true): ?>
-          <li><a href="welcome.php">Welcome, <?php echo htmlspecialchars($_SESSION["name"]); ?></a></li>
+          <li><a href="edit_account.php">Welcome, <?php echo htmlspecialchars($_SESSION["name"]); ?></a></li>
           <li><a href="welcome.php">Home</a></li>
           <li><a href="about.php">About</a></li>
           <li><a href="logout.php">Logout</a></li>
