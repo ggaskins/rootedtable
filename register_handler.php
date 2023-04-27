@@ -29,7 +29,7 @@ mysqli_stmt_bind_param($stmt, "ssss", $email, $password_hash, $fname, $lname);
 
 // Execute statement and check for errors
 if (mysqli_stmt_execute($stmt)) {
-  header("location: welcome.php");
+  header("location: login.php");
 } else {
   echo "Error registering user: " . mysqli_error($conn);
 }
