@@ -55,9 +55,6 @@
 // Set page title
 $page_title = "Local Farms";
 
-// Start session
-session_start();
-
 // Include header file
 require_once "header.php";
 
