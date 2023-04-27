@@ -1,8 +1,9 @@
 <?php
 $db_host = 'db-mysql-nyc1-74817-do-user-13891110-0.b.db.ondigitalocean.com';
+$db_port = '25060';
 $db_name = 'defaultdb';
 $db_user = 'doadmin';
-$db_pass = 'AVNS_TiObYQOBYOU5Klx6sf8 hide';
+$db_password = 'AVNS_TiObYQOBYOU5Klx6sf8';
 
 // Create a database connection
 $conn = mysqli_connect($db_host . ':' . $db_port, $db_user, $db_password, $db_name);
