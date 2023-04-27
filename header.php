@@ -101,8 +101,10 @@
         <ul>
            <?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true): ?>
           <li><a href="edit_account.php">Welcome, <?php echo htmlspecialchars($_SESSION["name"]); ?></a></li>
-          <li><a href="welcome.php">Home</a></li>
+          <li><a href="account.php">Account</a></li>
           <li><a href="about.php">About</a></li>
+          <li><a href="local_farms.php">Farms</a></li>
+          <li><a href="nearby_farms.php">Map</a></li>
           <li><a href="logout.php">Logout</a></li>
           <?php else: ?>
           <li><a href="login.php">Login</a></li>
