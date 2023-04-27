@@ -1,3 +1,7 @@
+<?php
+// Start session
+session_start();
+?>
 <style>
   .business {
     display: flex;
