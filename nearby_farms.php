@@ -1,8 +1,8 @@
 <?php
-// Set page title
-$page_title = "Nearby Farms - Map";
 // Start session
 session_start();
+// Set page title
+$page_title = "Nearby Farms - Map";
 // Include header
 require_once "header.php";
 ?>
