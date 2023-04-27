@@ -1,6 +1,9 @@
 <?php
-// Start session
-session_start();
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
+
 
 // Set page title
 $page_title = "Rooted Table";
