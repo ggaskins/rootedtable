@@ -1,8 +1,8 @@
 <?php
-// Set page title
-$page_title = "About Us";
 // Start session
 session_start();
+// Set page title
+$page_title = "About Us";
 // Include header
 require_once "header.php";
 ?>
