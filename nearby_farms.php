@@ -1,6 +1,6 @@
 <?php
 // Set page title
-$page_title = "About Us";
+$page_title = "Nearby Farms - Map";
 // Start session
 session_start();
 // Include header
