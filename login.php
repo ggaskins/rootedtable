@@ -1,3 +1,7 @@
+<?php
+// Start session
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,9 +124,6 @@ span {
       $db_name = 'defaultdb';
       $db_user = 'doadmin';
       $db_password = 'AVNS_TiObYQOBYOU5Klx6sf8';
-
-// Initialize session
-      session_start();
 
 // Check if the user is already logged in, if yes then redirect to welcome page
       if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
