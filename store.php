@@ -57,8 +57,6 @@ $db_password = 'AVNS_TiObYQOBYOU5Klx6sf8';
 // Create a database connection
 $conn = mysqli_connect($db_host . ':' . $db_port, $db_user, $db_password, $db_name);
 
-    $conn = new mysqli($host, $username, $password, $database);
-
 // Query to retrieve products
     $sql = "SELECT * FROM products";
     $result = $conn->query($sql);
