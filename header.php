@@ -1,3 +1,7 @@
+<?php
+// Initialize session
+session_start();
+?>
 <!DOCTYPE html>
 <html>
   <head>
