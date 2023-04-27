@@ -48,10 +48,11 @@
     require_once "header.php";
     ?><?php
 // Database connection
-    $host = "db-mysql-nyc1-74817-do-user-13891110-0.b.db.ondigitalocean.com";
-    $username = "root";
-    $password = "";
-    $database = "project2";
+    $db_host = 'db-mysql-nyc1-74817-do-user-13891110-0.b.db.ondigitalocean.com';
+    $db_port = '25060';
+    $db_name = 'defaultdb';
+    $db_user = 'doadmin';
+    $db_password = 'AVNS_TiObYQOBYOU5Klx6sf8';
 
     $conn = new mysqli($host, $username, $password, $database);
 
