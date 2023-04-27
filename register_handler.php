@@ -1,4 +1,6 @@
 <?php
+// Initialize session
+session_start();
 // Database configuration
 $db_host = 'db-mysql-nyc1-74817-do-user-13891110-0.b.db.ondigitalocean.com';
 $db_port = '25060';
