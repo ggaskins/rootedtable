@@ -1,9 +1,10 @@
 <?php
+require_once "header.php";
 // Set page title
 $page_title = "Rooted Table";
 
 // Include header file
-require_once "header.php";
+
 ?>
 
 <!DOCTYPE html>
