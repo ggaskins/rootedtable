@@ -1,7 +1,8 @@
 <?php
+ini_set('session.cookie_secure', 1);
   // Start session
   session_start();
-  ini_set('session.cookie_secure', 1);
+  
   // Check if user is already logged in, if yes then redirect to welcome page
   if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: welcome.php");
