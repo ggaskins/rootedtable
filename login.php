@@ -188,9 +188,7 @@ span {
                 mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $user_fname);
                 if(mysqli_stmt_fetch($stmt)){
                   if(password_verify($password, $hashed_password)){
-              // Password is correct, start a new session
-                    session_start();
-
+                    
               // Store data in session variables
                     $_SESSION["loggedin"] = true;
                     $_SESSION["id"] = $id;
