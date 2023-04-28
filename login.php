@@ -1,8 +1,12 @@
 <?php
-    if(!isset($_SESSION["loggedin"])) 
-    { 
-        session_start(); 
-    } 
+  // Start session
+  session_start();
+
+  // Check if user is already logged in, if yes then redirect to welcome page
+  if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header("location: welcome.php");
+    exit;
+  }
 ?>
 <!DOCTYPE html>
 <html>
