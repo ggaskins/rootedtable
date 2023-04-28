@@ -1,11 +1,5 @@
 <?php
-ini_set('session.cookie_secure', 1);
 session_start();
-
-echo '<pre>';
-var_dump($_SESSION);
-session_save_path();
-echo '</pre>';
 ?>
 <!DOCTYPE html>
 <html>
