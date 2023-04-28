@@ -2,6 +2,7 @@
 session_start();
 echo '<pre>';
 var_dump($_SESSION);
+session_save_path();
 echo '</pre>';
 ?>
 <!DOCTYPE html>
