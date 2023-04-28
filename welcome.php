@@ -1,5 +1,4 @@
 <?php
-session_start();
 // Set page title
 $page_title = "Rooted Table";
 
