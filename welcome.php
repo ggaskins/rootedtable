@@ -1,6 +1,7 @@
 <?php
 ini_set('session.cookie_secure', 1);
 session_start();
+session_save_path();
 // Set page title
 $page_title = "Rooted Table";
 
