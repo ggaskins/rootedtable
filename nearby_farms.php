@@ -72,7 +72,7 @@ require_once "header.php";
             <h3>${business.name}</h3>
             <p>Address: ${business.address}</p>
             <p>Phone: ${business.phone}</p>
-            ${ business.website != "\r" ? `<a href="${business.website.trim()}">Visit website</a>` : ""}`
+            ${ business.website != "\r" ? `<a href="${business.website.trim()}">Visit website</a>` : `<a href="store.php?business_id=${business.id}">Register a new website</a>`}`
           });
 
           // Open the info window when the marker is clicked

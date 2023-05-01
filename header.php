@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -103,9 +100,9 @@ session_start();
       <nav>
         <ul>
            <?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true): ?>
-          <li><a href="edit_account.php">Welcome, <?php echo htmlspecialchars($_SESSION["name"]); ?></a></li>
+          <li><a href="welcome.php">Welcome, <?php echo htmlspecialchars($_SESSION["name"]); ?></a></li>
           <li><a href="account.php">Account</a></li>
-          <li><a href="/cart.php"><i class="fa fa-shopping-cart"></i> Cart (0)</a></li>
+          <li><a href="cart.php"><i class="fa fa-shopping-cart"></i> Cart (0)</a></li>
           <li><a href="about.php">About</a></li>
           <li><a href="local_farms.php">Farms</a></li>
           <li><a href="nearby_farms.php">Map</a></li>

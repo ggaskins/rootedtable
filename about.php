@@ -103,8 +103,8 @@ require_once "header.php";
     <div class="row">
       <div class="col-md-8">
         <h1>About Us</h1>
-        <p>We are a farm-to-table restaurant dedicated to sourcing our ingredients locally from small, family-owned farms in the area. Our goal is to provide our customers with fresh, healthy, and delicious meals while supporting local agriculture and strengthening our community.</p>
-        <p>Our menu changes frequently based on what is in season and available from our farmers. We believe in using only the highest quality ingredients and preparing them simply to let their natural flavors shine through. We also offer vegetarian, vegan, and gluten-free options for our customers with dietary restrictions.</p>
+        <p>We are a farm-to-table website dedicated to sourcing our ingredients locally from small, family-owned farms in the area. Our goal is to provide our customers with fresh, healthy, and delicious meals while supporting local agriculture and strengthening our community.</p>
+        <p>Our items change frequently based on what is in season and available from our farmers. We believe in using only the highest quality ingredients and preparing them simply to let their natural flavors shine through. We also offer vegetarian, vegan, and gluten-free options for our customers with dietary restrictions.</p>
         <p>Come visit us and taste the difference that locally sourced ingredients make!</p>
       </div>
       <div class="col-md-4">
@@ -112,10 +112,10 @@ require_once "header.php";
         <p>Our mission is to provide fresh, healthy, and delicious meals while supporting local agriculture and strengthening our community.</p>
 
         <h2>Our Story</h2>
-        <p>Our restaurant was founded in 2010 by John and Jane Smith, who wanted to create a place where people could enjoy delicious food made from locally sourced ingredients. Over the years, we have grown to become one of the most popular farm-to-table restaurants in the area.</p>
+        <p>Our website was founded in 2010 by John and Jane Smith, who wanted to create a place where people could enjoy delicious food made from locally sourced ingredients. Over the years, we have grown to become one of the most popular farm-to-table websites in the area.</p>
 
         <h2>Our Team</h2>
-        <p>Our team consists of experienced chefs, servers, and bartenders who are passionate about providing our customers with the best possible dining experience.</p>
+        <p>Our team consists of experienced farmers, chefs, logistics experts, and more who are passionate about providing our customers with the best possible dining experience.</p>
       </div>
     </div>
   </div>

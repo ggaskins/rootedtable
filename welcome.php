@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "header.php";
 // Set page title
 $page_title = "Rooted Table";

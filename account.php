@@ -1,8 +1,5 @@
 <?php
-if(!isset($_SESSION)) 
-{ 
-    session_start(); 
-} 
+session_start(); 
 // Include header file
 require_once "header.php";
 // Check if the user is logged in, if not then redirect to login page
