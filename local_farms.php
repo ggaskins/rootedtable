@@ -80,7 +80,11 @@ if (!$conn) {
 }
 
 // Results per page
-$results_per_page = 10;
+if (isset($_GET['results_per_page'])){
+  $results_per_page = $_GET['results_per_page'][0];
+} else {
+  $results_per_page = 10;
+}
 
 // Current page
 $page = isset($_GET['page']) ? $_GET['page'] : 1;

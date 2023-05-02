@@ -111,3 +111,8 @@ if (isset($_GET['business_id'])) {
     echo '<p>Business ID not set.</p>';
 }
 ?>
+
+<?php
+// Include footer file
+require_once "footer.php";
+?>
