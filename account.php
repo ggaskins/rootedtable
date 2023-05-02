@@ -1,5 +1,6 @@
 <?php
 session_start(); 
+$page_title = "Rooted Table";
 // Include header file
 require_once "header.php";
 // Check if the user is logged in, if not then redirect to login page
@@ -19,7 +20,7 @@ $db_password = 'AVNS_TiObYQOBYOU5Klx6sf8';
 $conn = mysqli_connect($db_host . ':' . $db_port, $db_user, $db_password, $db_name);
 
 // Get user information from the database
-$sql = "SELECT user_email, user_fname, user_lname, user_image FROM users WHERE user_id = ?";
+$sql = "SELECT user_email, user_fname, user_lname, user_image, user_type FROM users WHERE user_id = ?";
 
 if($stmt = mysqli_prepare($conn, $sql)){
   // Bind variables to the prepared statement as parameters
@@ -35,13 +36,14 @@ if($stmt = mysqli_prepare($conn, $sql)){
     // Check if the user exists
     if(mysqli_stmt_num_rows($stmt) == 1){
       // Bind result variables
-      mysqli_stmt_bind_result($stmt, $email, $fname, $lname, $image);
+      mysqli_stmt_bind_result($stmt, $email, $fname, $lname, $image, $type);
       if(mysqli_stmt_fetch($stmt)){
         // Store user information in session variables
         $_SESSION["username"] = $email;
         $_SESSION["name"] = $fname;
         $_SESSION["lname"] = $lname;
         $_SESSION["image"] = $image;
+        $_SESSION["type"] = $type;
       }
     } else{
       // Redirect to login page if user does not exist
@@ -100,6 +102,9 @@ mysqli_close($conn);
       </div>
     <?php endif; ?>
     <p>
+      <?php if($_SESSION['type'] == 'master'): ?>
+        <a href="admin.php" class="btn btn-primary">Admin</a>
+      <?php endif; ?>
       <a href="edit_account.php" class="btn btn-primary">Edit Account</a>
       <a href="logout.php" class="btn btn-danger">Log Out</a>
     </p>
